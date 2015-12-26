@@ -30,7 +30,7 @@ public class Application   {
 	}
 	@Override
 	public void run(String... args) throws Exception {
-		final String uri = "https://api.uber.com/v1/products?latitude=37.33233139577873&longitude=-122.0312186703086&server_token=sUjg_HqcDtJp1lMPYwdNAf0RyvBNwm-wITJ9U3qK";
+		final String uri = "https://api.com/v1/products?latitude=37.33233139577873&longitude=-122.0312186703086&server_token=sUjg_HqcDtJp1lMPYwdNAf0RyvBNwm-wITJ9U3qK";
 	    RestTemplate restTemplate = new RestTemplate();
 	    String result = restTemplate.getForObject(uri, String.class);
 	    System.out.println(result);
