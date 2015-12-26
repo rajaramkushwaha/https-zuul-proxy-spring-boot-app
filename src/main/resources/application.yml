@@ -1,0 +1,57 @@
+#javax: 
+#  net: 
+#    ssl:
+#      trustStore: classpath:keystore.jks
+#      trustStorePassword: password
+#
+
+server: 
+  port: 8443
+  ssl:  
+    key-store: classpath:keystore.jks
+    key-store-password: password
+    key-password: password
+
+ribbon: 
+  TrustStore: keystore.jks
+  TrustStorePassword : password
+  ReadTimeout: 60000
+  IsSecure: true
+  MaxAutoRetries: 1
+    
+
+zuul:
+  routes:
+    uberprodapi: /proxyprodapi/**
+    serviceId: proxyprodapi    
+   
+proxyprodapi: 
+  ribbon:    
+    listOfServers: https://api.proxy.com:443/**
+    
+        
+# Disable Hystrix timeout globally (for all services)
+hystrix: 
+  command: 
+    default:  
+      execution:  
+        timeout:  
+          enabled: false
+        isolation:
+          thread:
+            timeoutInMilliseconds: 300000
+          
+
+# Disable Hystrix timeout for a single service
+#hystrix.command.<serviceName>.execution.timeout.enabled: false
+
+# Increase the Hystrix timeout to 60s (globally)
+#hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+
+# Increase the Hystrix timeout to 60s (per service)
+#hystrix.command.<serviceName>.execution.isolation.thread.timeoutInMilliseconds: 60000
+        
+        
+
+
+           
